@@ -4,13 +4,11 @@ import org.springframework.stereotype.Service;
 import ru.yandex.practicum.catsgram.exception.ConditionsNotMetException;
 import ru.yandex.practicum.catsgram.exception.NotFoundException;
 import ru.yandex.practicum.catsgram.model.Post;
+import ru.yandex.practicum.catsgram.model.SortOrder;
 import ru.yandex.practicum.catsgram.model.User;
 
 import java.time.Instant;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 // Указываем, что класс PostService - является бином и его
 // нужно добавить в контекст приложения
@@ -23,8 +21,16 @@ public class PostService {
         this.userService = userService;
     }
 
-    public Collection<Post> findAll() {
-        return posts.values();
+    public Collection<Post> findAll(int from, int size, SortOrder sort) {
+        Comparator<Post> comparator = Comparator.comparing(Post::getPostDate);
+        if (sort == SortOrder.DESCENDING) {
+            comparator = comparator.reversed();
+        }
+        return posts.values().stream()
+                .sorted(comparator)
+                .skip(from)
+                .limit(10)
+                .toList();
     }
 
     public Post create(Post post) {
@@ -45,6 +51,14 @@ public class PostService {
         post.setPostDate(Instant.now());
         posts.put(post.getId(), post);
         return post;
+    }
+
+    public Post findById(Long id) {
+        return posts.entrySet().stream()
+                .filter(entry -> entry.getKey().equals(id))
+                .map(Map.Entry::getValue)
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException(String.format("Пост с id = %d не найден", id)));
     }
 
     public Post update(Post newPost) {
