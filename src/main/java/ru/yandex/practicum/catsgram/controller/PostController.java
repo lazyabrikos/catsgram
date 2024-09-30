@@ -1,6 +1,5 @@
 package ru.yandex.practicum.catsgram.controller;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.yandex.practicum.catsgram.exception.ParameterNotValidException;
@@ -19,6 +18,7 @@ public class PostController {
         this.postService = postService;
     }
 
+    /*
     @GetMapping
     public Collection<Post> findAll(
             @RequestParam(defaultValue = "10") int size,
@@ -40,7 +40,6 @@ public class PostController {
         }
 
 
-
         return postService.findAll(from, size, sortOrder);
     }
 
@@ -59,4 +58,5 @@ public class PostController {
     public Post update(@RequestBody Post newPost) {
         return postService.update(newPost);
     }
+     */
 }

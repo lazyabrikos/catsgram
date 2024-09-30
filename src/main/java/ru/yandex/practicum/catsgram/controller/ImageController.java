@@ -8,7 +8,6 @@ import ru.yandex.practicum.catsgram.model.Image;
 import ru.yandex.practicum.catsgram.model.ImageData;
 import ru.yandex.practicum.catsgram.service.ImageService;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController

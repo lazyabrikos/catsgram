@@ -1,7 +1,6 @@
 package ru.yandex.practicum.catsgram.error;
 
 import lombok.Getter;
-import org.springframework.stereotype.Component;
 
 @Getter
 public class ErrorResponse {

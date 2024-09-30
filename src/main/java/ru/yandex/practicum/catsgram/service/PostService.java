@@ -29,10 +29,11 @@ public class PostService {
         return posts.values().stream()
                 .sorted(comparator)
                 .skip(from)
-                .limit(10)
+                .limit(size)
                 .toList();
     }
 
+    /*
     public Post create(Post post) {
         Long authorId = post.getAuthorId();
         Optional<User> userOptional = userService.findById(authorId);
@@ -52,7 +53,7 @@ public class PostService {
         posts.put(post.getId(), post);
         return post;
     }
-
+*/
     public Post findById(Long id) {
         return posts.entrySet().stream()
                 .filter(entry -> entry.getKey().equals(id))
