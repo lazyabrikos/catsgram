@@ -1,4 +1,4 @@
-package ru.yandex.practicum.catsgram.dto;
+package ru.yandex.practicum.catsgram.dto.user;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -12,5 +12,4 @@ public class NewUserRequest {
     private String username;
     private String email;
     private String password;
-    private Instant registrationDate;
 }
